@@ -40,7 +40,7 @@ passive --help
 
 #### 🔎 Recherche d'un nom complet
 ```bash
-passive -fn "Jean Dupont"
+python3 main.py -fn "Jean Dupont"
 ```
 📌 Résultat :
 ```
@@ -54,7 +54,7 @@ passive -fn "Jean Dupont"
 
 #### 🌍 Recherche d'une adresse IP
 ```bash
-passive -ip 8.8.8.8
+python3 main.py -ip 8.8.8.8
 ```
 📌 Résultat :
 ```
@@ -70,7 +70,7 @@ passive -ip 8.8.8.8
 
 #### 🕵️‍♂️ Recherche d'un nom d'utilisateur
 ```bash
-passive -u "@jeanga7"
+python3 main.py -u "@jeanga7"
 ```
 📌 Résultat :
 ```
@@ -92,6 +92,24 @@ passive -u "@jeanga7"
 
 💾 Saved in result3.txt
 ```
+#### 🖥️ Utilisation de l'interface web
+
+En plus des commandes en ligne, ce programme propose une **interface graphique** simple et intuitive pour effectuer vos recherches OSINT. Pour l'utiliser :
+
+1. **Lancez l'application en mode API** :
+   ```bash
+   python3 main.py
+   ```
+   Vous verrez un message indiquant que le serveur Flask est démarré.
+
+2. **Accédez à l'interface** :  
+   Ouvrez votre navigateur et rendez-vous sur **[http://127.0.0.1:5000](http://127.0.0.1:5000)**.
+
+3. **Effectuez une recherche** :  
+   - Entrez un **nom complet**, une **adresse IP** ou un **nom d'utilisateur** dans le champ correspondant.
+   - Cliquez sur **Rechercher** pour obtenir les résultats instantanément.
+
+Cette interface facilite l'utilisation de l'outil sans passer par le terminal et permet une exploration plus fluide des résultats. 🚀
 
 ---
 
