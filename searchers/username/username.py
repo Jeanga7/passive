@@ -20,7 +20,7 @@ SOCIAL_NETWORKS = {
     },
     "TikTok": {
         "url": "https://www.tiktok.com/@{}",
-        "verification": lambda r: not "Couldn't find this account" in r.text
+        "verification": lambda r: not verify_tiktok(r)
     },
     "Threads": {
         "url": "https://www.threads.net/@{}",
@@ -64,6 +64,10 @@ def verify_threads(url):
     response = fetch_dynamic_data(url, mode="threads")
     return response["status"] == "not found"
 
+def verify_tiktok(url):
+    response = fetch_dynamic_data(url, mode="tiktok")
+    return response["status"] == "not found"
+
 def search_username(username):
     """Recherche un username sur plusieurs réseaux sociaux"""
 
@@ -79,14 +83,17 @@ def search_username(username):
 
             time.sleep(1)
             response = session.get(profile_url, timeout=10)
+            
             if 'instagram' in profile_url:
                 exists = verification_func(profile_url)
             elif 'threads' in profile_url:
                 exists = verification_func(profile_url)
+            elif 'tiktok' in profile_url:
+                exists = verification_func(profile_url)
             else:
                 response = session.get(profile_url, timeout=10)
                 exists = response.status_code == 200 and verification_func(response)
-            
+                
             if exists:
                 found_networks.append(f"✅ {platform}: {GREEN}YES{RESET} {profile_url}")
             else:
@@ -100,3 +107,5 @@ def search_username(username):
     result_message += f"\n\n🔍 {len([n for n in found_networks if '✅' in n])} profils found.\n"
     
     return result_message
+
+

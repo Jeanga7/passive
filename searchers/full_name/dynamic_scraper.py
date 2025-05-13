@@ -45,6 +45,15 @@ def fetch_dynamic_data(url, mode="default"):
                         break
             except Exception as e:
                 print(f"Erreur lors de la vérification d'Instagram: {str(e)}")
+        elif mode == "tiktok":
+            try:
+                spans = driver.find_elements(By.TAG_NAME, "p")
+                for span in spans:
+                    if "Couldn't find this account" in span.text:
+                        result["status"] = "not found"
+                        break
+            except Exception as e:
+                print(f"Erreur lors de la vérification de TikTok: {str(e)}")
         else:
             selectors = {
                 "address": [
